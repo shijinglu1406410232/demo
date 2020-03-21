@@ -1,0 +1,40 @@
+具体参看：
+   https://www.cnblogs.com/ljsh/p/10928106.html
+
+   另外，桌面/经典小demo中有案例备份，还有不要写注释，就看这个目的和步骤的笔记重写一次；
+
+目的：将数据库取到的数据展示到前端页面。
+步骤：
+    1.建工程，添加相关框架依赖，建库建表，并插入数据；
+    2.在application.yml里面写配置，重点配置这样几项---服
+    务访问端口、数据源相关的配置、Mybatis映射文件路径配置；
+    3.根据数据库模型写实体类；
+    4.写DAO层接口抽象方法，记住添加@Mapper注解；（或添加@MapperScan注解，扫描对应的接口）
+    5.写接口对应的映射文件（或之前在接口上写对应的sql实现）
+    6.写业务层方法，重点是调Dao层的接口的sql实现；（头部添加@Service注解及@Transactional）
+    7.写控制层方法，重点是创建ModelAndView对象，并往其中添加view视图名，调用业务层方法，并把
+    绑定的视图对象添加到view中；
+
+-----------------------------------------------------------------------------------------------
+
+鲸鱼姐最前面的删除、编辑、登录的功能要再练习，因为这些很基础，而且使用频率也很高，；
+-----------------------------------------------------------------------------------------------
+具体参看：
+   https://blog.csdn.net/zhaolulu916/article/details/103494860
+需求：
+   采用springBoot+ajax+mybatis技术从mysql数据库读取数据，并展示到前台；
+
+注意：只能有同一个头即可，不要写多个相同的头；
+        eg:这样写会报错，报配置文件错误；
+        mybatis:
+          mapper-locations: classpath:mapper/*.xml
+
+        mybatis:
+          configuration:
+            map-underscore-to-camel-case: true
+        改成：
+        mybatis:
+          mapper-locations: classpath:mapper/*.xml
+          configuration:
+            map-underscore-to-camel-case: true
+----------------------------------------------------------------------------------

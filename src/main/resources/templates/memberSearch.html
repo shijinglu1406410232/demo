@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="assert/js/jquery-3.4.0.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+      <div>
+          <label>ID</label>
+          <input name="id" id="id" type="">
+          <button type="" onclick="searchMember()">搜索</button>
+      </div>
+      <div>
+          <p>姓名:<span id="name">---</span> </p>
+          <p>性别:<span id="sex">---</span> </p>
+          <p>手机号:<span id="telephone">---</span></p>
+      </div>
+      <script>
+          function searchMember(){
+              var id = $("#id").val();
+              alert("searchMember"+id);
+              //设为disable则无法获取
+              $.ajax({
+                  url: "searchById",
+                  method: "post",
+                  data: {
+                      memberId: id
+                  },
+                  dataType: "json",
+                  success: function(data) {
+                      alert(data.status);
+                      if (data.status == "success") {
+                          //alert(data.member.name);
+                          $("#name").html(data.member.memberName);
+                          $("#sex").html(data.member.memberSex);
+                          $("#telephone").html(data.member.memberTelephone);
+                      }
+                  },
+                  error: function(data) {
+                      alert("wrong");
+                  }
+              });
+          }
+      </script>
+</body>
+</html>
